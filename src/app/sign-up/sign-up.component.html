@@ -1,0 +1,44 @@
+<form class="card mx-auto justify-content-center" [formGroup]="signUp" (ngSubmit)="signupForm()">
+    <div class="card-body">
+        <div class="text-center">
+            <h5>Sign Up</h5>
+        </div><br>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email"
+                placeholder="Enter your email id" formControlName="email">
+            <span class="text-danger" *ngIf="(signupControl.email.touched || submitted) && signupControl.email.errors">
+                Email is required*
+            </span>
+        </div><br>
+        <div class="form-group">
+            <label for="passsword">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your Password"
+                formControlName="password">
+            <span class="text-danger"
+                *ngIf="(signupControl.password.touched || submitted) && signupControl.password.errors">
+                Password is required*
+            </span>
+            <div *ngIf="getControl('confirm_password')?.errors && getControl('confirm_password')?.touched">
+                <small class="text-danger" *ngIf="getControl('confirm_password')?.errors?.['required']">Confirm Password
+                    field is requird</small>
+            </div>
+        </div><br>
+        <div class="form-group">
+            <label for="cnfpassword">Confirm Password</label>
+            <input type="password" class="form-control" id="cnfpassword" placeholder="Confirm password"
+                formControlName="cnfpassword">
+            <span class="text-danger"
+                *ngIf="(signupControl.cnfpassword.touched || submitted) && signupControl.cnfpassword.errors">
+                Confirm Password*
+            </span>
+            <div *ngIf="signUp.errors?.['passwordMismatcgError'] && getControl('cnfpassword')?.touched">
+                <small class="text-danger">Password mismatched</small>
+            </div>
+        </div><br>
+        <button type="submit" class="btn btn-primary text-center" [disabled]="signUp.invalid">Sign Up</button>
+    </div>
+    <div class="mx-auto d-flex">
+        <a routerLink="/signin">Sign In</a>
+    </div>
+</form>

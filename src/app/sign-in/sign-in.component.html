@@ -1,0 +1,28 @@
+<form class="card mx-auto justify-content-center" [formGroup]="signIn" (ngSubmit)="signinForm()">
+    <div class="card-body">
+        <div class="text-center">
+            <h5>Sign In</h5>
+        </div><br>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="email"
+                placeholder="Enter your email id" formControlName="email">
+            <span class="text-danger" *ngIf="(signinControl.email.touched || submitted) && signinControl.email.errors">
+                Email is required*
+            </span>
+        </div><br>
+        <div class="form-group">
+            <label for="passsword">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your Password"
+                formControlName="password">
+            <span class="text-danger"
+                *ngIf="(signinControl.password.touched || submitted) && signinControl.password.errors">
+                Password is required*
+            </span>
+        </div><br>
+        <button type="submit" class="btn btn-primary text-center" [disabled]="signIn.invalid">Sign In</button>
+    </div>
+    <div class="mx-auto d-flex">
+        <p class="mx-auto">Not a member?</p><a routerLink="/signup">Create account</a>
+    </div>
+</form>
